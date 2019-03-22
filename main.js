@@ -30,7 +30,7 @@ app.post('/meetupbot', function (req, res) {
   res.json(reply);
 });
 
-app.get('/healthcheck', function (req, res) {
+app.get('/', function (req, res) {
     const reply = {
         "status": "ok"
     };
