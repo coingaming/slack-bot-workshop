@@ -30,6 +30,13 @@ app.post('/meetupbot', function (req, res) {
   res.json(reply);
 });
 
+app.get('/healthcheck', function (req, res) {
+    const reply = {
+        "status": "ok"
+    };
+    res.json(reply);
+});
+
 
 // /*
 // * /meetupbot-show <Location> <Category/Interest>
