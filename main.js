@@ -24,9 +24,9 @@ app.post('/action-endpoint', function (req, res) {
     'Authorization': `Bearer ${process.env.TOKEN}`
   }
 
-  console.log(req.body['channel']);
+  console.log(req.body.channel);
 
-  const body = {
+  let body = {
     'channel': req.body.channel,
     'text': 'Hello there'
   }
