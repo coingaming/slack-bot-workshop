@@ -11,6 +11,7 @@ const bodyParser = require('body-parser');
 // but feel free to use whatever libs or frameworks you'd like through `package.json`.
 
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
 /*
 * /meetupbot calls the meetupbot and response is a greeting along with list of commands
