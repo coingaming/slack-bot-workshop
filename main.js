@@ -24,25 +24,27 @@ app.post('/action-endpoint', function (req, res) {
     'Authorization': `Bearer ${process.env.TOKEN}`
   }
 
-  console.log(req.body.event);
+  // console.log(req.body.event);
 
-  const body = {
-    'channel': req.body.event.channel,
-    'text': 'Hello there'
+  if (req.body.event.subtype != 'bot_message') { // se we won't reply to ourselves...
+    const body = {
+      'channel': req.body.event.channel,
+      'text': 'Hello there'
+    }
+
+    const options = {
+      url:   'https://slack.com/api/chat.postMessage',
+      method: 'POST',
+      headers,
+      body:  JSON.stringify(body)
+    };
+
+    request.post(options, function(err, res, body) {
+      if (err) {
+        console.log(err);
+      }
+    })
   }
-
-  const options = {
-    url:   'https://slack.com/api/chat.postMessage',
-    method: 'POST',
-    headers,
-    body:  JSON.stringify(body)
-  };
-
-  // request.post(options, function(err, res, body) {
-  //   if (err) {
-  //     console.log(err);
-  //   }
-  // })
 
   res.json(reply);
 });
