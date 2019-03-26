@@ -5,7 +5,7 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const request = require('request');
+// const request = require('request');
 // var moment = require('moment');
 // we've started you off with Express,
 // but feel free to use whatever libs or frameworks you'd like through `package.json`.
@@ -38,9 +38,9 @@ app.get('/', function (req, res) {
 });
 
 app.post('/action-endpoint', function (req, res) {
-  const challange = req.body.challange;
+  const challenge = req.body.challenge;
   const reply = {
-      "challange": challange
+      "challenge": challenge
   };
   res.json(reply);
 });
