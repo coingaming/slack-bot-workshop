@@ -14,7 +14,7 @@ app.get('/', function (req, res) {
 
 app.post('/action-endpoint', function (req, res) {
   const challenge = req.body.challenge;
-  console.log(req.body);
+  
   const reply = {
       "challenge": challenge
   };
@@ -35,6 +35,8 @@ app.post('/action-endpoint', function (req, res) {
     headers,
     body:  JSON.stringify(body)
   };
+
+  console.log(`Sending POST with ${JSON.stringify(options)} and ${JSON.stringify(body)}`);
 
   request.post(options, function(err, res, body) {
     if (err) {
