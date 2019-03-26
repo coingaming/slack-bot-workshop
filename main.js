@@ -24,6 +24,8 @@ app.post('/action-endpoint', function (req, res) {
     'Authorization': `Bearer ${process.env.TOKEN}`
   }
 
+  console.log(req.body);
+
   const body = {
     'channel': req.body.channel,
     'text': 'Hello there'
@@ -36,7 +38,7 @@ app.post('/action-endpoint', function (req, res) {
     body:  JSON.stringify(body)
   };
 
-  console.log(`Sending POST with ${JSON.stringify(options)} and ${JSON.stringify(body)}`);
+  console.log(`Sending POST with ${JSON.stringify(options)}`);
 
   request.post(options, function(err, res, body) {
     if (err) {
