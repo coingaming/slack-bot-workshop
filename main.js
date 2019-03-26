@@ -1,12 +1,13 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const request = require('request');
 
 app.use(bodyParser.json());
 
 app.get('/', function (req, res) {
     const reply = {
-        "status": "ok"
+        'status': 'ok'
     };
     res.json(reply);
 });
@@ -17,6 +18,30 @@ app.post('/action-endpoint', function (req, res) {
   const reply = {
       "challenge": challenge
   };
+
+  const headers = {
+    'Content-type': 'application/json',
+    'Authorization': `Bearer ${process.env.TOKEN}`
+  }
+
+  const body = {
+    'channel': req.body.channel,
+    'text': 'Hello there'
+  }
+
+  const options = {
+    url:   'https://slack.com/api/chat.postMessage',
+    method: 'POST',
+    headers,
+    body:  JSON.stringify(body)
+  };
+
+  request.post(options, function(err, res, body) {
+    if (err) {
+      console.log(err);
+    }
+  })
+
   res.json(reply);
 });
 
