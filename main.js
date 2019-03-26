@@ -37,6 +37,13 @@ app.get('/', function (req, res) {
     res.json(reply);
 });
 
+app.post('/action-endpoint', function (req, res) {
+  const reply = {
+      "status": "ok"
+  };
+  res.json(reply);
+});
+
 
 // /*
 // * /meetupbot-show <Location> <Category/Interest>
